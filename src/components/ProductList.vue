@@ -4,33 +4,52 @@
         <img v-if="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="">
         <ul v-else>
             <li 
-              v-for="(product, index) in products" :key="index">{{product.title}} - {{product.price | currency}} {{product.inventory}}
-              <button @click="addProductToCart(product)">Add to cart</button>
+              v-for="(product, index) in products" 
+              :key="index">{{product.title}} - {{product.price | currency}} {{product.inventory}}
+              <button 
+                :disabled="!productIsInStock(product)"
+                @click="addProductToCart(product)">Add to cart</button>
             </li>
         </ul>
     </div>
 </template>
 <script>
+import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
     data () {
         return {
-            loading: false
+            loading: false,
+            productIndex: 1
         }
         
     },
     methods: {
-        addProductToCart (product) {
-            this.$store.dispatch('addProductToCart', product)
-        }
+        ...mapActions({
+            fetchProducts: 'fetchProducts',
+            addProductToCart: 'addProductToCart'
+        })
+        // addProductToCart (product) {
+        //     this.$store.dispatch('addProductToCart', product)
+        // }
     },
     computed: {
-        products() {
-           return this.$store.getters.availableProducts
-        }
+        ...mapState({
+            products: state => state.products.items
+        }),
+        ...mapGetters({
+            productIsInStock: 'productIsInStock'
+        })
+        // products() {
+        // //    return this.$store.getters.availableProducts
+        //     return this.$store.state.products
+        // },
+        // productIsInStock () {
+        //     return this.$store.getters.productIsInStock
+        // }
     },
     created () {
         this.loading = true
-        this.$store.dispatch('fetchProducts')
+        this.fetchProducts()
           .then(() => this.loading = false)
     }
 
