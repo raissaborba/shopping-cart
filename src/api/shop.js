@@ -2,9 +2,10 @@
  * Mocking client-server processing
  */
 const _products = [
-    { 'id': 1, 'title': 'iPad 4 Mini', 'price': 500.01, 'inventory': 2 },
-    { 'id': 2, 'title': 'H&M T-Shirt White', 'price': 10.99, 'inventory': 10 },
-    { 'id': 3, 'title': 'Charli XCX - Sucker CD', 'price': 19.99, 'inventory': 5 }
+    { 'id': 1, 'title': 'iPad 4 Mini', 'price': 669, 'inventory': 2, 'color': 'black', 'img': '' },
+    { 'id': 1, 'title': 'iPad 4 Mini', 'price': 669, 'inventory': 2, 'color': 'white', 'img': '' },
+    { 'id': 2, 'title': 'AirPods Max White', 'price': 629, 'inventory': 10, 'img': 'src/assets/airpods-max-hero-select-202011_FMT_WHH.jpeg' },
+    { 'id': 3, 'title': 'Iphone 12 Pro', 'price': 1159, 'inventory': 5, 'img': '' }
   ]
   
   export default {

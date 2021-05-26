@@ -2,15 +2,18 @@
     <div>
         <h1>Product List</h1>
         <img v-if="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="">
-        <ul v-else>
-            <li 
+        <div v-else class="products">
+            <div
               v-for="(product, index) in products" 
-              :key="index">{{product.title}} - {{product.price | currency}} {{product.inventory}}
+              :key="index"
+              class="product">
+              <img :src="product.img" alt="">
+              {{product.title}} - {{product.price | currency}} {{product.inventory}}
               <button 
                 :disabled="!productIsInStock(product)"
                 @click="addProductToCart(product)">Add to cart</button>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -55,3 +58,12 @@ export default {
 
 }
 </script>
+<style scoped>
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+
+</style>

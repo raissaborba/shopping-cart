@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index.js'
-import {currency} from '@/currency';
+import {currency} from '@/currency'
+import './assets/css/index.css'
 
 Vue.config.productionTip = false
 Vue.filter('currency', currency)
