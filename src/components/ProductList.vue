@@ -8,7 +8,7 @@
               :key="index"
               class="product">
               <img :src="product.img" alt="">
-              {{product.title}} - {{product.price | currency}} {{product.inventory}}
+              <div>{{product.title}} - {{product.price | currency}} - {{product.inventory}}</div>
               <button 
                 :disabled="!productIsInStock(product)"
                 @click="addProductToCart(product)">Add to cart</button>
@@ -60,9 +60,12 @@ export default {
 </script>
 <style scoped>
 .products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+    display: flex;
+    
+}
+
+.product {
+    margin: 0 20px;
 }
 
 
